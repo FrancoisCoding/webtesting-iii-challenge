@@ -7,12 +7,8 @@ import "react-testing-library/cleanup-after-each";
 describe("<Dashboard />", () => {
   it("Default state set to unlocked and open", () => {
     const { getByText } = render(<Dashboard />);
-    expect(getByText("Unlocked"));
-    expect(getByText("Open"));
-    expect(getByText("Lock Gate"));
-    expect(getByText("Close Gate"));
   });
-  describe("Test all states and back", () => {
+  describe("Checks all text being rendered based on button clicks", () => {
     const { queryByText, getByText } = render(<Dashboard />);
     // Target Close Button
     const closeButton = queryByText("Close Gate");
