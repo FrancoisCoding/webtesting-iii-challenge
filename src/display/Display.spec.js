@@ -18,4 +18,12 @@ describe("<Display />", () => {
     expect(getByText("Closed"));
     expect(getByText("Locked"));
   });
+  it("Class name check for red-led", () => {
+    const { container } = render(<Display locked={true} closed={true} />);
+    expect(container.querySelector("led red-led"));
+  });
+  it("Class name check for green-led", () => {
+    const { container } = render(<Display locked={false} closed={false} />);
+    expect(container.querySelector("led green-led"));
+  });
 });
