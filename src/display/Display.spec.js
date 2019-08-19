@@ -4,20 +4,16 @@ import { render, fireEvent } from "@testing-library/react";
 import Display from "./Display";
 
 describe("<Display />", () => {
-  it("matches snapshot", () => {
-    const tree = renderer.create(<Display />);
-
-    expect(tree.toJSON()).toMatchSnapshot();
+  it("Default state set to open and unlocked", () => {
+    const { getByText } = render(<Display />);
+    // Check if unlocked and open are displayed on screen
+    expect(getByText("Unlocked"));
+    expect(getByText("Open"));
   });
-
-  // it("displays a message when 'speak' button is clicked", () => {
-  //   const speak = jest.fn();
-  //   let messageMock = "";
-
-  //   const { getByText } = render(<Display speak={speak} message={messageMock} />);
-
-  //   fireEvent.click(getByText(/speak/i));
-
-  //   expect(speak).toHaveBeenCalled();
-  // });
+  it("Accepting props", () => {
+    // Check if display component receives props and changes based off received props
+    const { getByText } = render(<Display locked={true} closed={true} />);
+    expect(getByText("Locked"));
+    expect(getByText("Closed"));
+  });
 });
